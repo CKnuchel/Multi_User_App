@@ -7,10 +7,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umfrageApp.m223.Config.UserDetailsImpl;
 import umfrageApp.m223.Model.Role;
 import umfrageApp.m223.Model.User;
 import umfrageApp.m223.Repositories.UserRepository;
-import umfrageApp.m223.Config.UserDetailsImpl;
 
 import java.util.ArrayList;
 import java.util.List;
