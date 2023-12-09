@@ -13,6 +13,10 @@ public class M223Application {
 		SpringApplication.run(M223Application.class, args);
 	}
 
+	/**
+	 * Enable Cors Requests from React Frontend
+	 * @return
+	 */
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
