@@ -22,7 +22,7 @@ public class M223Application {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/public**").allowedOrigins("http://localhost:5173");
+				registry.addMapping("/public").allowedOrigins("http://localhost:5173");
 			}
 		};
 	}
