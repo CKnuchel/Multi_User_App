@@ -23,6 +23,8 @@ public class M223Application {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/public").allowedOrigins("http://localhost:5173");
+				registry.addMapping("/private").allowedOrigins("http://localhost:5173");
+				registry.addMapping("/api/auth/signin").allowedOrigins("http://localhost:5173");
 			}
 		};
 	}
