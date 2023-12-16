@@ -4,13 +4,13 @@ import com.wiss.m223.Model.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
-    Question findByQuestionId(Long questionId);
+    Optional<Question> findByQuestion(String question);
 
-    Boolean existsByQuestionId(Long questionId);
+    Boolean existsByQuestion(String question);
 
-    Boolean existsByText(String text);
 }

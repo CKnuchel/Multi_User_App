@@ -1,67 +1,60 @@
 package com.wiss.m223.Model;
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "answers")
+@Table(name = "Answer")
 public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int answerId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "questionId", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="questionId", nullable=false)
     private Question question;
 
-    @Column(nullable = false, length = 500)
-    private String text;
-
-    @Column(nullable = false)
-    private Boolean value;
-
-    // Default constructor
+    @NotNull
+    private String answer;
 
     public Answer() {
     }
 
-    // Constructor
-    public Answer(Question question, String text, Boolean value) {
+    public Answer(Question question, String answer) {
         this.question = question;
-        this.text = text;
-        this.value = value;
+        this.answer = answer;
     }
 
-    // Getters and setters
-
-    public int getAnswerId() {
-        return answerId;
-    }
-
-    public void setAnswerId(int answerId) {
+    public Answer(int answerId, Question question, String answer) {
         this.answerId = answerId;
+        this.question = question;
+        this.answer = answer;
+    }
+
+
+
+    public int getanswerId() {
+        return answerId;
     }
 
     public Question getQuestion() {
         return question;
     }
 
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
+    }
+
     public void setQuestion(Question question) {
         this.question = question;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Boolean getValue() {
-        return value;
-    }
-
-    public void setValue(Boolean value) {
-        this.value = value;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }
