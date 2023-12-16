@@ -25,7 +25,11 @@ public class WebSecurityConfig {
     private UserDetailsServiceImpl userDetailsService;
     @Autowired
     private AuthenticationEntryPoint unauthorizedHandler;
-    private final static String[] EVERYONE = { "/public",  "api/auth/**", "/api/auth/signup", "/api/auth/signin" };
+    private final static String[] EVERYONE = {
+            "/public",
+            "api/auth/**", "/api/auth/signup", "/api/auth/signin",
+            "/questions", "/questions/**",
+            "/answers", "/answers/**" };
     private final static String[] SECURE = { "/private", "/admin" };
     private final static String[] ROLES = { "MODERATOR", "ADMIN" };
 

@@ -1,16 +1,22 @@
 package com.wiss.m223.Controller;
 
+import com.wiss.m223.Model.Question;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
+@RequestMapping("/private")
 public class PrivateController {
-	
-	@GetMapping("/private")
-	public ResponseEntity<List<String>> getGreeting() {
-		return ResponseEntity.ok(List.of("Hello", "Private", "World"));
-	}
+	/**
+	@GetMapping("/questions")
+	public ResponseEntity<Question>
+*/
+
 }

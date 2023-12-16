@@ -2,15 +2,17 @@ package com.wiss.m223.Controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
+@RequestMapping("/public")
 public class PublicController {
-	
-	@GetMapping("/public")
-	public ResponseEntity<List<String>> getGreeting() {
-		return ResponseEntity.ok(List.of("Hello", "Public", "World"));
-	}
+
+
 }
