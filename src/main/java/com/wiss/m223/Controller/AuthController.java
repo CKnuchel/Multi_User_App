@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import com.wiss.m223.DTO.MessageResponse;
 import com.wiss.m223.Requests.LoginRequest;
 import com.wiss.m223.Requests.SignupRequest;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -65,6 +66,7 @@ public class AuthController {
                 roles));
     }
 
+    @Transactional // registerUSer wird mit einer Transaktion ausgeführt (alles oder nichts)
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
