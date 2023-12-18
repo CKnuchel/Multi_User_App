@@ -18,18 +18,31 @@ public class QuestionController {
     @Autowired // Nutzen Sie Autowiring, um die Abhängigkeit zu injizieren
     private QuestionRepository questionRepository;
 
+	/**
+	 * Abfragen aller Fragen
+	 * */
     @GetMapping("")
     public ResponseEntity<List<Question>> getQuestions() {
         List<Question> questions = questionRepository.findAll();
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
+	/**
+	 * Abfragen einer spezifischen Frage
+	 * @param question
+	 * @return
+	 */
 	@PostMapping("")
 	public ResponseEntity<Question> createQuestion(@RequestBody Question question) {
 		Question _question = questionRepository.save(question);
 		return new ResponseEntity<>(_question, HttpStatus.CREATED);
 	}
 
+	/**
+	 * Löschen einer Frage
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatus> deleteQuestion(@PathVariable("id") int id) {
 		try {
