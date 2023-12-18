@@ -1,22 +1,18 @@
 package com.wiss.m223.Controller;
 
-import com.wiss.m223.Model.Question;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+// Importiert die notwendigen Spring Framework Bibliotheken
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
+// Erlaubt Cross-Origin-Anfragen von allen Ursprüngen und setzt das maximale Alter auf 3600 Sekunden
 @CrossOrigin(origins = "*", maxAge = 3600)
+// Definiert die Klasse als RestController, was bedeutet, dass sie HTTP-Anfragen behandeln kann
 @RestController
+// Legt den Pfad fest, unter dem dieser Controller erreichbar ist
 @RequestMapping("/private")
 public class PrivateController {
-	/**
-	@GetMapping("/questions")
-	public ResponseEntity<Question>
-*/
+
+    // Endpunkte hier einfügen
 
 }

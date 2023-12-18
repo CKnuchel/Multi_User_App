@@ -1,5 +1,6 @@
 package com.wiss.m223.Filter;
 
+// Importiert die notwendigen Bibliotheken und Klassen
 import com.wiss.m223.Util.JwtUtils;
 import com.wiss.m223.Service.UserDetailsServiceImpl;
 import org.slf4j.Logger;
@@ -18,10 +19,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-// *
-//  * a filter that executes once per request. AuthTokenFilter class that extends
-//  * OncePerRequestFilter and overrides doFilterInternal() method.
-
+// Ein Filter, der einmal pro Anfrage ausgeführt wird. AuthTokenFilter-Klasse, die OncePerRequestFilter erweitert und die Methode doFilterInternal() überschreibt.
 public class AuthTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtils jwtUtils;
@@ -29,6 +27,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private UserDetailsServiceImpl userDetailsService;
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
+    // Überschreibt die Methode doFilterInternal(), um die Authentifizierung des Benutzers zu überprüfen und zu setzen
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
@@ -52,6 +51,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         }
     }
 
+    // Methode zum Parsen des JWT aus der Anfrage
     private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {

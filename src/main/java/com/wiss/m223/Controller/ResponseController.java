@@ -6,6 +6,7 @@ import com.wiss.m223.Model.User;
 import com.wiss.m223.Repository.AnswerRepository;
 import com.wiss.m223.Repository.ResponseRepository;
 import com.wiss.m223.Repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,6 +63,7 @@ public class ResponseController {
      * @param answer_id - die ID der Antwort.
      * @return ResponseEntity<Responses> - die erstellte Antwort oder einen entsprechenden HTTP-Status.
      */
+    @Transactional
     @PostMapping("")
     public ResponseEntity<Responses> createResponse(@RequestParam int user_id, @RequestParam int answer_id) {
         try {

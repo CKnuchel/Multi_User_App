@@ -1,34 +1,32 @@
 package com.wiss.m223.Util;
-import java.util.Date;
 
 import com.wiss.m223.Config.UserDetailsImpl;
+import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
+import java.util.Date;
 
-// 
-//   This class has 3 main functions:
-//   generateJwtToken: create JWT Token from Auth object
-//   getUserNameFromJwtToken: get username from JWT
-//   validateJwtToken: validate a JWT with a secret
-
+// Diese Klasse hat 3 Hauptfunktionen:
+// generateJwtToken: Erstellt ein JWT-Token aus einem Auth-Objekt
+// getUserNameFromJwtToken: Holt den Benutzernamen aus dem JWT
+// validateJwtToken: Validiert ein JWT mit einem Geheimnis
 @Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
-    @Value("${m223.app.jwtSecret}") 
+
+    // Liest den JWT-Schlüssel aus der Anwendungskonfiguration
+    @Value("${m223.app.jwtSecret}")
     private String jwtSecret;
-    @Value("${m223.app.jwtExpirationMs}") 
+
+    // Liest die JWT-Ablaufzeit aus der Anwendungskonfiguration
+    @Value("${m223.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
+    // Generiert ein JWT-Token basierend auf den Authentifizierungsdetails
     public String generateJwtToken(Authentication authentication) {
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
         return Jwts.builder()
@@ -40,27 +38,29 @@ public class JwtUtils {
                 .compact();
     }
 
+    // Extrahiert den Benutzernamen aus dem JWT-Token
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret)
                 .parseClaimsJws(token).getBody().getSubject();
     }
 
+    // Überprüft die Gültigkeit des JWT-Tokens
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(jwtSecret)
                     .parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
-            logger.error("Invalid JWT signature: {}", e.getMessage());
+            logger.error("Ungültige JWT-Signatur: {}", e.getMessage());
         } catch (MalformedJwtException e) {
-            logger.error("Invalid JWT token: {}", e.getMessage());
+            logger.error("Ungültiges JWT-Token: {}", e.getMessage());
         } catch (ExpiredJwtException e) {
-            logger.error("JWT token is expired: {}", e.getMessage());
+            logger.error("JWT-Token ist abgelaufen: {}", e.getMessage());
         } catch (UnsupportedJwtException e) {
-            logger.error("JWT token is unsupported: {}",
+            logger.error("JWT-Token wird nicht unterstützt: {}",
                     e.getMessage());
         } catch (IllegalArgumentException e) {
-            logger.error("JWT claims string is empty: {}",
+            logger.error("JWT-Ansprüche sind leer: {}",
                     e.getMessage());
         }
         return false;

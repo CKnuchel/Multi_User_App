@@ -1,23 +1,25 @@
 package com.wiss.m223.Controller;
 
-import com.wiss.m223.Model.Question;
-import com.wiss.m223.Repository.QuestionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+/**
+ * AdminController ist ein REST-Controller, der HTTP-Anfragen im Zusammenhang mit Admin-Funktionen behandelt.
+ * Er verwendet die CrossOrigin-Anmerkung, um die Freigabe von Ressourcen über Ursprünge hinweg zu ermöglichen.
+ */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
 
-
+    /**
+     * Diese Methode behandelt GET-Anfragen, um eine Admin-Nachricht abzurufen.
+     * Sie gibt eine Nachricht mit dem Inhalt "Admin" und einen OK-Status zurück.
+     * @return ResponseEntity<String> - eine Nachricht mit dem Inhalt "Admin" und einen OK-Status.
+     */
     @GetMapping("")
-	public ResponseEntity<String> getAdmin() {
-		return new ResponseEntity<>("Admin", HttpStatus.OK);
-	}
+    public ResponseEntity<String> getAdmin() {
+        return new ResponseEntity<>("Admin", HttpStatus.OK);
+    }
 }
