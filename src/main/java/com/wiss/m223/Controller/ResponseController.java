@@ -31,6 +31,8 @@ public class ResponseController {
     @Autowired
     private AnswerRepository answerRepository;
 
+    // TODO: Schreibt die Antwort in die Datenbank, aber überall Unauthorized Error
+
     @PostMapping("") // Unauthorized Error, aber wird trotzdem erstellt und gespeichert Problem mit Security
     public ResponseEntity<Responses> createResponse(@RequestParam long userId, @RequestParam long answerId) {
         Optional<User> user = userRepository.findById(userId);
