@@ -18,6 +18,9 @@ public class QuestionController {
     @Autowired // Nutzen Sie Autowiring, um die Abhängigkeit zu injizieren
     private QuestionRepository questionRepository;
 
+	@Autowired
+	private AnswerController answerController;
+
 	/**
 	 * Abfragen aller Fragen
 	 * */
