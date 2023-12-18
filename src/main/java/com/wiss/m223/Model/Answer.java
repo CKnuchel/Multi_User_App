@@ -34,7 +34,7 @@ public class Answer {
 
 
 
-    public int getanswerId() {
+    public long getAnswerId() {
         return answerId;
     }
 
@@ -46,9 +46,7 @@ public class Answer {
         return answer;
     }
 
-    public void setAnswerId(int answerId) {
-        this.answerId = answerId;
-    }
+    public void setAnswerId() {this.answerId = answerId;}
 
     public void setQuestion(Question question) {
         this.question = question;

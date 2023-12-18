@@ -62,4 +62,24 @@ public class ResponseController {
         }
     }
 
+    @PostMapping("/done")
+    public ResponseEntity<Boolean> userAlreadyResponded(@RequestParam String username, @RequestParam int question_id)
+    {
+        Optional<User> user = userRepository.findByUsername(username);
+        Optional<Answer> answer = answerRepository.findById((long) question_id);
+
+        if (user.isPresent() && answer.isPresent()) {
+            List<Responses> responses = responseRepository.findByUserId(user.get().getId());
+            for (Responses response : responses) {
+                if (response.getAnswers().getQuestion().getId() == question_id) {
+                    return new ResponseEntity<>(true, HttpStatus.OK);
+                }
+            }
+            return new ResponseEntity<>(false, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
 }
