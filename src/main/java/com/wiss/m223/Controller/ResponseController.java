@@ -31,34 +31,34 @@ public class ResponseController {
     @Autowired
     private AnswerRepository answerRepository;
 
-    // TODO: Schreibt die Antwort in die Datenbank, aber überall Unauthorized Error
+    @GetMapping("")
+    public ResponseEntity<List<Responses>> getAllResponses() {
+        try {
+            List<Responses> responses = responseRepository.findAll();
 
-    @PostMapping("") // Unauthorized Error, aber wird trotzdem erstellt und gespeichert Problem mit Security
-    public ResponseEntity<Responses> createResponse(@RequestParam long userId, @RequestParam long answerId) {
-        Optional<User> user = userRepository.findById(userId);
-        Optional<Answer> answer = answerRepository.findById(answerId);
-        if (user.isPresent() && answer.isPresent()) {
-            Responses response = new Responses(user.get(), answer.get());
-            responseRepository.save(response);
-            return ResponseEntity.ok(response);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User or Answer not found");
+            if (responses.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(responses, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<Iterable<Responses>> getResponses() {
-        List<Responses> responses = responseRepository.findAll();
-        return ResponseEntity.ok(responses);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Responses> getResponseById(@PathVariable long id) {
-        Optional<Responses> response = responseRepository.findById(id);
-        if (response.isPresent()) {
-            return ResponseEntity.ok(response.get());
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Response not found");
+    @PostMapping("")
+    public ResponseEntity<Responses> createResponse(@RequestParam int user_id, @RequestParam int answer_id) {
+        try {
+            Optional<User> user = userRepository.findById((long) user_id);
+            Optional<Answer> answer = answerRepository.findById((long) answer_id);
+            if (user.isPresent() && answer.isPresent()) {
+                Responses response = new Responses(user.get(), answer.get());
+                Responses _response = responseRepository.save(response);
+                return new ResponseEntity<>(_response, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

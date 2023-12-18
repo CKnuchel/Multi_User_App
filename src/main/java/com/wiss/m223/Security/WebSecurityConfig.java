@@ -27,7 +27,8 @@ public class WebSecurityConfig {
     private AuthenticationEntryPoint unauthorizedHandler;
     private final static String[] EVERYONE = {
             "/public",
-            "api/auth/**", "/api/auth/signup", "/api/auth/signin"
+            "api/auth/**", "/api/auth/signup", "/api/auth/signin",
+            "/responses", "/responses/**"
     };
     private final static String[] SECURE = { "/questions", "/questions/**",
             "/answers", "/answers/**",

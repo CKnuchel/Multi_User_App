@@ -12,11 +12,11 @@ public class Responses {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int response_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="answer_id", nullable=false)
     private Answer answer;
 
