@@ -28,9 +28,11 @@ public class WebSecurityConfig {
     private final static String[] EVERYONE = {
             "/public",
             "api/auth/**", "/api/auth/signup", "/api/auth/signin",
-            "/questions", "/questions/**",
-            "/answers", "/answers/**" };
-    private final static String[] SECURE = { "/private", "/admin" };
+            "/responses", "/responses/**",
+    };
+    private final static String[] SECURE = { "/questions", "/questions/**",
+            "/answers", "/answers/**",
+            "/responses", "/responses/**" };
     private final static String[] ROLES = { "MODERATOR", "ADMIN" };
 
     @Bean

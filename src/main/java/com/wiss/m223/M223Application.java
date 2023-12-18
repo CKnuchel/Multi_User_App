@@ -27,6 +27,8 @@ public class M223Application {
 				registry.addMapping("/api/auth/signin").allowedOrigins("http://localhost:5173");
 				registry.addMapping("/questions/**").allowedOrigins("http://localhost:5173");
 				registry.addMapping("/answers/**").allowedOrigins("http://localhost:5173");
+				registry.addMapping("/responses/**").allowedOrigins("http://localhost:5173");
+				registry.addMapping("/responses").allowedOrigins("http://localhost:5173");
 			}
 		};
 	}

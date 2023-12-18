@@ -13,29 +13,26 @@ public class Responses {
     private int response_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id", nullable=false)
+    @JoinColumn(name="user_id", nullable=false)
     private User user;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "response_answer", joinColumns = @JoinColumn(name = "response_id"), inverseJoinColumns = @JoinColumn(name = "answer_id"))
-    private Set<Answer> answers;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="answer_id", nullable=false)
+    private Answer answer;
 
-    private boolean isSelected;
 
     public Responses() {
     }
 
-    public Responses(User user, Set<Answer> answers, boolean isSelected) {
+    public Responses(User user, Answer answer) {
         this.user = user;
-        this.answers = answers;
-        this.isSelected = isSelected;
+        this.answer = answer;
     }
 
-    public Responses(int response_id, User user, Set<Answer> answers, boolean isSelected) {
+    public Responses(int response_id, User user, Answer answer) {
         this.response_id = response_id;
         this.user = user;
-        this.answers = answers;
-        this.isSelected = isSelected;
+        this.answer = answer;
     }
 
     public int getResponse_id() {
@@ -46,12 +43,8 @@ public class Responses {
         return user;
     }
 
-    public Set<Answer> getAnswers() {
-        return answers;
-    }
-
-    public boolean isSelected() {
-        return isSelected;
+    public Answer getAnswers() {
+        return answer;
     }
 
     public void setResponse_id(int response_id) {
@@ -62,12 +55,8 @@ public class Responses {
         this.user = user;
     }
 
-    public void setAnswers(Set<Answer> answers) {
-        this.answers = answers;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
+    public void setAnswers(Answer answers) {
+        this.answer = answers;
     }
 
 }
