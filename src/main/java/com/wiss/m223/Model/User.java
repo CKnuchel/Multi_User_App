@@ -46,7 +46,7 @@ public class User {
         this.password = password;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY) // das ist der spannende ORM Teil: automatisches Mapping von M-N Beziehungen :-)
+    @ManyToMany(fetch = FetchType.EAGER) // das ist der spannende ORM Teil: automatisches Mapping von M-N Beziehungen :-)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
