@@ -23,11 +23,6 @@ public class AnswerController {
     @Autowired
     private QuestionRepository questionRepository;
 
-    @GetMapping("") // TODO: Funktioniert nicht > 401 Unauthorized
-    public ResponseEntity<List<Answer>> getAnswers() {
-        List<Answer> answers = answerRepository.findAll();
-        return new ResponseEntity<>(answers, HttpStatus.OK);
-    }
 
     @PostMapping("")
     public ResponseEntity<Answer> createAnswer(@RequestParam String answer, @RequestParam long questionId) {
@@ -39,5 +34,20 @@ public class AnswerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    /**
+     * Alle Antworten zu einer Frage abfragen
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<List<Answer>> getAnswersByQuestionId(@PathVariable("id") long id) {
+        Optional<Question> question = questionRepository.findById(id);
+        if (question.isPresent()) {
+            List<Answer> answers = answerRepository.findAllByQuestionId(id);
+            return new ResponseEntity<>(answers, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 }
