@@ -18,22 +18,34 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+// Definiert die Klasse als Konfiguration, was bedeutet, dass sie Spring-Beans bereitstellt
 @Configuration
+// Aktiviert die Web-Sicherheit
 @EnableWebSecurity
 public class WebSecurityConfig {
+    // Injiziert die UserDetailsServiceImpl und AuthenticationEntryPoint
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
     @Autowired
     private AuthenticationEntryPoint unauthorizedHandler;
-    private final static String[] EVERYONE = { "/public",  "api/auth/**", "/api/auth/signup", "/api/auth/signin" };
-    private final static String[] SECURE = { "/private", "/admin" };
+
+    // Definiert die Zugriffsrechte für verschiedene Endpunkte
+    private final static String[] EVERYONE = {
+            "/public",
+            "api/auth/**", "/api/auth/signup", "/api/auth/signin"
+    };
+    private final static String[] SECURE = { "/questions", "/questions/**",
+            "/answers", "/answers/**",
+            "/responses", "/responses/**" };
     private final static String[] ROLES = { "MODERATOR", "ADMIN" };
 
+    // Erstellt einen Bean für den AuthTokenFilter
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
     }
 
+    // Erstellt einen Bean für den DaoAuthenticationProvider
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -42,26 +54,29 @@ public class WebSecurityConfig {
         return authProvider;
     }
 
+    // Erstellt einen Bean für den AuthenticationManager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
 
+    // Erstellt einen Bean für den PasswordEncoder
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // Erstellt einen Bean für die SecurityFilterChain
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable()).cors(Customizer.withDefaults())
-                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth.requestMatchers(EVERYONE).permitAll()
-                        .anyRequest().authenticated());
-        http.authenticationProvider(authenticationProvider());
+        http.csrf(csrf -> csrf.disable()).cors(Customizer.withDefaults()) // CORS aktivieren
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler)) // Fehlerbehandlung
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Session-Management
+                .authorizeHttpRequests(auth -> auth.requestMatchers(EVERYONE).permitAll() // Zugriff für alle
+                        .anyRequest().authenticated()); // Authentifizierung für alle anderen
+        http.authenticationProvider(authenticationProvider()); // Authentifizierung
         http.addFilterBefore(authenticationJwtTokenFilter(),
                 UsernamePasswordAuthenticationFilter.class);
-        return http.build();
+        return http.build(); // FilterChain erstellen
     }
 }

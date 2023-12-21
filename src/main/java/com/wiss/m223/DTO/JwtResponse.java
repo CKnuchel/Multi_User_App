@@ -2,14 +2,16 @@ package com.wiss.m223.DTO;
 
 import java.util.List;
 
+// Diese Klasse repräsentiert die JWT-Antwort, die nach einer erfolgreichen Authentifizierung zurückgegeben wird
 public class JwtResponse {
-    private String token;
-    private String type = "Bearer";
-    private Long id;
-    private String username;
-    private String email;
-    private List<String> roles;
+    private String token; // Das JWT-Token
+    private String type = "Bearer"; // Der Typ des Tokens, standardmäßig "Bearer"
+    private Long id; // Die ID des authentifizierten Benutzers
+    private String username; // Der Benutzername des authentifizierten Benutzers
+    private String email; // Die E-Mail des authentifizierten Benutzers
+    private List<String> roles; // Die Rollen des authentifizierten Benutzers
 
+    // Konstruktor für die JwtResponse-Klasse
     public JwtResponse(String accessToken, Long id, String username, String email, List<String> roles) {
         this.token = accessToken;
         this.id = id;
@@ -17,6 +19,8 @@ public class JwtResponse {
         this.email = email;
         this.roles = roles;
     }
+
+    // Getter und Setter für die Felder der Klasse
 
     public String getAccessToken() {
         return token;
