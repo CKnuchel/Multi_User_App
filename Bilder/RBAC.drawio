@@ -1,0 +1,46 @@
+<mxfile host="Electron" modified="2023-12-18T20:21:06.852Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="_Xi0VDavZbShcQpLMSCu" version="22.0.2" type="device">
+  <diagram name="Seite-1" id="3feRbH9tJBacDZgCIow1">
+    <mxGraphModel dx="1038" dy="626" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Q2SbAQ5LfXNouzNY1JFd-1" target="Q2SbAQ5LfXNouzNY1JFd-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-1" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/azure_stack/User_Subscriptions.svg;" vertex="1" parent="1">
+          <mxGeometry x="120" y="160" width="68" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-2" value="Administrator" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="109" y="226" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Q2SbAQ5LfXNouzNY1JFd-3" target="Q2SbAQ5LfXNouzNY1JFd-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-3" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/azure_stack/Multi_Tenancy.svg;" vertex="1" parent="1">
+          <mxGeometry x="120" y="360" width="68" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-4" value="Users" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="125" y="438" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-5" value="Role: Admin&lt;br&gt;- Umfragen erstellen&lt;br&gt;- Login für Zugriff auf Fragen&lt;br&gt;-Antworten zu Fragen erfassen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="148" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-7" value="Role: User&lt;br&gt;- Umfragen beantworten" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="348.75" width="160" height="87.5" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-9" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/databases/Azure_Database_MySQL_Server.svg;" vertex="1" parent="1">
+          <mxGeometry x="660" y="238" width="48" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-10" value="Umfragen" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="644" y="310" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-11" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.017;entryY=0.534;entryDx=0;entryDy=0;entryPerimeter=0;curved=1;" edge="1" parent="1" source="Q2SbAQ5LfXNouzNY1JFd-7" target="Q2SbAQ5LfXNouzNY1JFd-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2SbAQ5LfXNouzNY1JFd-12" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.025;entryY=0.297;entryDx=0;entryDy=0;entryPerimeter=0;curved=1;" edge="1" parent="1" source="Q2SbAQ5LfXNouzNY1JFd-5" target="Q2SbAQ5LfXNouzNY1JFd-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
